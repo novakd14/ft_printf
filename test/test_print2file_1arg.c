@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_print2file.c                                  :+:      :+:    :+:   */
+/*   test_print2file_1arg.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:46 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/05 19:53:21 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/05 20:17:24 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	check_diff(char *file, char *diff)
 //	-1	for error
 //	0	for PASS
 //	>0	for FAIL
-int	test_stdout(char *s)
+int	test_stdout_1arg(char *s)
 {
 	char *u_file = "users.log";
 	char *e_file = "expect.log";

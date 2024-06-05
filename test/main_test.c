@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:44:28 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/05 12:14:43 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/05 19:44:31 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	main(void)
 {
 	print_test_cases();
-	printf("%i", test_stdout("test"));
+	test_stdout("Hello");
 	return (0);
 }

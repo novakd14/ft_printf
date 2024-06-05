@@ -6,14 +6,14 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:44:22 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/05 12:14:58 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/05 19:44:22 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_TEST_H
 # define LIBFTPRINTF_TEST_H
 # include "../libftprintf.h"
-# include <stdio.h> // printf, I/O streams, fileno, fflush
+# include <stdio.h> // printf, sprintf, I/O streams, fileno, fflush
 # include <unistd.h> // close, open, dup
 # include <fcntl.h> // flags for open
 # include <stdlib.h> // system
