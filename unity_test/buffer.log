@@ -1,0 +1,1 @@
+test_ft_printf.c:720:test_ft_printf_rightPaddChar:FAIL: Expected 'a    ' Was 'a0000'
