@@ -771,9 +771,9 @@ void	test_printf_output(void)
 	int		expect_len;
 	int		given_len;
 
-	expect = "%0- #+5.0-3";
-	expect_len = 5;
-	given_len = printf("%0 -+# 0 5.-3d", 42);
+	expect = " 1 0 ";
+	expect_len = 7;
+	given_len = printf(" %c %c %c ", '1', '0', 0);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
