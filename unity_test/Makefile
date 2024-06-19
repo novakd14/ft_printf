@@ -5,7 +5,7 @@ NAME = test.exe
 NAMEREF = test_ref.exe
 SRCS = unity.c test_ft_printf.c
 SRCSREF = unity.c test_printf.c
-LIBS = ../libftprintf.a ../libft/libft.a
+LIBS = ../libftprintf.a
 OBJS = $(SRCS:.c=.o)
 OBJSREF = $(SRCSREF:.c=.o)
 
@@ -13,10 +13,10 @@ OBJSREF = $(SRCSREF:.c=.o)
 
 all: $(NAME) $(NAMEREF)
 
-$(NAME): $(OBJS) lib
+$(NAME): $(OBJS) $(LIBS)
 	$(CC) -o $(NAME) $(OBJS) $(LIBS)
 
-$(NAMEREF): $(OBJSREF) lib
+$(NAMEREF): $(OBJSREF) $(LIBS)
 	$(CC) -o $(NAMEREF) $(OBJSREF) $(LIBS)
 
 clean:
@@ -27,8 +27,8 @@ fclean: clean
 
 re: fclean all
 
-lib:
-	make -C ../ re
+$(LIBS):
+	make -C ../
 
 test: $(NAME)
 	clear

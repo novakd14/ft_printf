@@ -130,6 +130,21 @@ void	test_printf_nonAsciiChar(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_printf_0char(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = " ";
+	expect_len = 3;
+	given_len = printf(" %c ", 0);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
 void	test_printf_2char(void)
 {
 	char	*expect;
@@ -773,6 +788,7 @@ int	main(void)
 	RUN_TEST(test_printf_char);
 	RUN_TEST(test_printf_nonPrintChar);
 	RUN_TEST(test_printf_nonAsciiChar);
+	RUN_TEST(test_printf_0char);
 	RUN_TEST(test_printf_2char);
 	RUN_TEST(test_printf_2charInStr);
 	RUN_TEST(test_printf_str);

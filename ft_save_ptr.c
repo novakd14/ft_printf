@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:30:01 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 00:30:02 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:46:49 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	ft_cpyptr(char *dest, int len, void *ptr)
 
 int	ft_save_ptr(t_flags *flags, void *ptr)
 {
-	size_t	len;
-
 	if (ptr == NULL)
 	{
 		flags->arg_len = 5;
