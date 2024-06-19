@@ -13,10 +13,10 @@ OBJSREF = $(SRCSREF:.c=.o)
 
 all: $(NAME) $(NAMEREF)
 
-test.exe: $(OBJS) lib
+$(NAME): $(OBJS) lib
 	$(CC) -o $(NAME) $(OBJS) $(LIBS)
 
-test_ref.exe: $(OBJSREF) lib
+$(NAMEREF): $(OBJSREF) lib
 	$(CC) -o $(NAMEREF) $(OBJSREF) $(LIBS)
 
 clean:

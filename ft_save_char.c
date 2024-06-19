@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conv_spec.c                                     :+:      :+:    :+:   */
+/*   ft_save_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 20:09:46 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/04 22:52:12 by dnovak           ###   ########.fr       */
+/*   Created: 2024/06/19 00:29:24 by dnovak            #+#    #+#             */
+/*   Updated: 2024/06/19 00:29:24 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_conv_spec_char(int c)
+int	ft_save_char(t_flags *flags, unsigned char c)
 {
-	write(1, &((unsigned char) c), 1);
+	flags->arg_len = 1;
+	flags->str = (char *)ft_calloc(flags->arg_len + 1, sizeof(char));
+	if (flags->str == NULL)
+		return (0);
+	*(flags->str) = c;
 	return (1);
-}
-
-int	ft_conv_spec_str(const char *s)
-{
-	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
 }

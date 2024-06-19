@@ -6,33 +6,51 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:42:50 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/05 19:51:44 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 02:57:16 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+static void	init_flags(t_flags *flags)
+{
+	flags->alter_form = 0;
+	flags->zero_padd = 0;
+	flags->left_adjust = 0;
+	flags->space_signed = 0;
+	flags->sign_signed = 0;
+	flags->field_width = 0;
+	flags->precision = -1;
+	flags->str = NULL;
+	flags->arg_len = 0;
+}
 
-
+// Possibly mallocate the flag struct (don't need memory that will not be used)
 int	ft_printf(const char *format, ...)
 {
-	int	i;
-	int	len;
+	int		len;
+	size_t	i;
+	va_list	argv;
+	t_flags	flags;
 
+	va_start(argv, format);
 	len = 0;
 	i = 0;
-	while(*(format + i))
-		if(*(format + i) == '%')
+	while (*(format + i))
+	{
+		if (*(format + i) == '%')
 		{
-			i++;
-			write(1, (format + i++), 1);
-			len++;
+			init_flags(&flags);
+			if (ft_set_conversion(format, &i, &flags, &argv) == 0)
+				return (-1);
+			len += ft_put_arg(&flags);
 		}
 		else
 		{
-			write(1, (format + i++), 1);
+			ft_putchar_fd(*(format + i++), 1);
 			len++;
 		}
-	return (0);
-	// return (len);
+	}
+	va_end(argv);
+	return (len);
 }

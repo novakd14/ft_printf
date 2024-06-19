@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf_test.h                                 :+:      :+:    :+:   */
+/*   ft_save_pct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 16:44:22 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/05 19:44:22 by dnovak           ###   ########.fr       */
+/*   Created: 2024/06/19 00:29:57 by dnovak            #+#    #+#             */
+/*   Updated: 2024/06/19 03:10:32 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_TEST_H
-# define LIBFTPRINTF_TEST_H
-# include "../libftprintf.h"
-# include <stdio.h> // printf, sprintf, I/O streams, fileno, fflush
-# include <unistd.h> // close, open, dup
-# include <fcntl.h> // flags for open
-# include <stdlib.h> // system
+#include "libftprintf.h"
 
-
-void	print_test_cases(void);
-int		test_stdout(char *s);
-
-#endif //LIBFTPRINTF_TEST_H
+int	ft_save_pct(t_flags *flags)
+{
+	flags->field_width = 1;
+	flags->arg_len = 1;
+	flags->str = (char *)ft_calloc(flags->arg_len + 1, sizeof(char));
+	if (flags->str == NULL)
+		return (0);
+	*(flags->str) = '%';
+	return (1);
+}

@@ -1,1 +1,1 @@
-test_ft_printf.c:720:test_ft_printf_rightPaddChar:FAIL: Expected 'a    ' Was 'a0000'
+test_printf.c:764:test_printf_output:FAIL: Expected '%0- #+5.0-3' Was '%#+-5.0-3d'
