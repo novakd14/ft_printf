@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:30:06 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 00:30:06 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:46:29 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_save_str(t_flags *flags, char *s)
 		return (1);
 	}
 	len = ft_strlen(s);
-	if (flags->precision >= 0 && flags->precision < len)
+	if (flags->precision >= 0 && (unsigned)flags->precision < len)
 		flags->arg_len = flags->precision;
 	else
 		flags->arg_len = len;

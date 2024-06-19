@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:29:45 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 00:29:46 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:51:56 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	ft_cpyhexa_small(t_flags *flags, char *dest, int len,
 	}
 	num_len = ft_checkhexadec(x);
 	if (flags->precision >= 0)
-		ft_memset(dest, '0', flags->precision - num_len);
+		ft_memset(dest, '0', ft_max(0, flags->precision - num_len));
 	else if (flags->zero_padd)
-		ft_memset(dest, '0', flags->field_width - num_len);
+		ft_memset(dest, '0', ft_max(0, flags->field_width - num_len));
 	ft_cpyhexadec_small(dest, len - 1, x);
 }
 

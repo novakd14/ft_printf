@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:30:10 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 00:30:10 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:52:53 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	ft_cpyuint(t_flags *flags, char *dest, int len, unsigned int n)
 	if (n == 0 && flags->precision == 0)
 		return ;
 	if (flags->precision >= 0)
-		ft_memset(dest, '0', flags->precision - num_len);
+		ft_memset(dest, '0', ft_max(0, flags->precision - num_len));
 	else if (flags->zero_padd)
-		ft_memset(dest, '0', flags->field_width - num_len);
+		ft_memset(dest, '0', ft_max(0, flags->field_width - num_len));
 	ft_cpyunbr(dest, len - 1, n);
 }
 

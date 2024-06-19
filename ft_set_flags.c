@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_conversion.c                                :+:      :+:    :+:   */
+/*   ft_set_flags.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 22:41:41 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 03:14:21 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:29:29 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	ft_save_arg(char c, t_flags *flags, va_list *argv)
 	return (check);
 }
 
-int	ft_set_conversion(const char *format, size_t *i, t_flags *flags,
+int	ft_set_flags(const char *format, size_t *i, t_flags *flags,
 		va_list *argv)
 {
 	*i += 1;

@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:42:50 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 02:57:16 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:55:17 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	init_flags(t_flags *flags)
 	flags->arg_len = 0;
 }
 
-// Possibly mallocate the flag struct (don't need memory that will not be used)
 int	ft_printf(const char *format, ...)
 {
 	int		len;
@@ -41,7 +40,7 @@ int	ft_printf(const char *format, ...)
 		if (*(format + i) == '%')
 		{
 			init_flags(&flags);
-			if (ft_set_conversion(format, &i, &flags, &argv) == 0)
+			if (ft_set_flags(format, &i, &flags, &argv) == 0)
 				return (-1);
 			len += ft_put_arg(&flags);
 		}

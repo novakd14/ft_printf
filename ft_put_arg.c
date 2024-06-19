@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:09:46 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 02:59:35 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:50:47 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ unsigned long	ft_umax(unsigned long a, unsigned long b)
 	return (a);
 }
 
+long	ft_min(long a, long b)
+{
+	if (a > b)
+		return (b);
+	return (a);
+}
+
+long	ft_max(long a, long b)
+{
+	if (a < b)
+		return (b);
+	return (a);
+}
+
 int	ft_put_arg(t_flags *flags)
 {
 	int	padd;
@@ -33,7 +47,7 @@ int	ft_put_arg(t_flags *flags)
 	padd = flags->field_width;
 	if (flags->left_adjust == 0)
 	{
-		while (padd > 0 && padd > flags->arg_len)
+		while (padd > 0 && (unsigned)padd > flags->arg_len)
 		{
 			ft_putchar_fd(' ', 1);
 			padd--;
@@ -44,7 +58,7 @@ int	ft_put_arg(t_flags *flags)
 		ft_putstr_fd(flags->str, 1);
 		free(flags->str);
 	}
-	while (padd > 0 && padd > flags->arg_len)
+	while (padd > 0 && (unsigned)padd > flags->arg_len)
 	{
 		ft_putchar_fd(' ', 1);
 		padd--;
