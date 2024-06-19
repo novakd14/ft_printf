@@ -465,6 +465,36 @@ void	test_printf_minDint(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_printf_sign0Dint(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "+0";
+	expect_len = 2;
+	given_len = printf("%+d", 0);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_printf_sign0precision0Dint(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "+";
+	expect_len = 1;
+	given_len = printf("%+.d", 0);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
 void	test_printf_Uint(void)
 {
 	char	*expect;
@@ -720,6 +750,21 @@ void	test_printf_rightPaddChar(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_printf_output(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "%0- #+5.0-3";
+	expect_len = 5;
+	given_len = printf("%0 -+# 0 5.-3d", 42);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+}
+
 int	main(void)
 {
 	UNITY_BEGIN();
@@ -749,6 +794,8 @@ int	main(void)
 	RUN_TEST(test_printf_0Dint);
 	RUN_TEST(test_printf_maxDint);
 	RUN_TEST(test_printf_minDint);
+	RUN_TEST(test_printf_sign0Dint);
+	RUN_TEST(test_printf_sign0precision0Dint);
 	RUN_TEST(test_printf_Uint);
 	RUN_TEST(test_printf_maxUint);
 	RUN_TEST(test_printf_minUint);
@@ -766,6 +813,7 @@ int	main(void)
 	RUN_TEST(test_printf_precisionHexadec);
 	RUN_TEST(test_printf_paddPct);
 	RUN_TEST(test_printf_rightPaddChar);
+	RUN_TEST(test_printf_output);
 	// check for precision - signs and spaces before int
 	return (UNITY_END());
 }
