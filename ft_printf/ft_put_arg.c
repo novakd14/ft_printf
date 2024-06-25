@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:09:46 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 15:50:47 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/20 15:47:09 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	ft_put_arg(t_flags *flags)
 	}
 	if (flags->str != NULL)
 	{
+		if (*(flags->str) == '\0' && flags->arg_len == 1)
+			ft_putchar_fd('\0', 1);
 		ft_putstr_fd(flags->str, 1);
 		free(flags->str);
 	}

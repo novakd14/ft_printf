@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:29:41 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 15:51:39 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/06/20 15:57:29 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_cpyhexa_big(t_flags *flags, char *dest, int len, unsigned int x)
 	if (x == 0 && flags->precision == 0)
 		return ;
 	start = 0;
-	if (flags->alter_form)
+	if (flags->alter_form && x != 0)
 	{
 		ft_strlcpy(dest, "0X", 3);
 		start = 2;
@@ -46,7 +46,7 @@ int	ft_save_hexa_big(t_flags *flags, unsigned int x)
 			len = ft_umax(flags->precision, len);
 		else if (flags->zero_padd)
 			len = ft_umax(flags->field_width, len);
-		if (flags->alter_form)
+		if (flags->alter_form && x != 0)
 			len += 2;
 		flags->arg_len = len;
 	}
