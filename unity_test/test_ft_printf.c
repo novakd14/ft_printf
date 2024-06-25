@@ -130,6 +130,21 @@ void	test_ft_printf_nonAsciiChar(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_ft_printf_0char(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = " ";
+	expect_len = 3;
+	given_len = ft_printf(" %c ", 0);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
 void	test_ft_printf_2char(void)
 {
 	char	*expect;
@@ -297,7 +312,7 @@ void	test_ft_printf_ptr(void)
 	int		given_len;
 	void	*ptr;
 
-	ptr = 0x42f;
+	ptr = (void *)0x42f;
 	expect = "0x42f";
 	expect_len = 5;
 	given_len = ft_printf("%p", ptr);
@@ -413,7 +428,7 @@ void	test_ft_printf_minIint(void)
 
 	expect = "-2147483648";
 	expect_len = 11;
-	given_len = ft_printf("%i", MIN_INT);
+	given_len = ft_printf("%i", (int)MIN_INT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -458,7 +473,7 @@ void	test_ft_printf_minDint(void)
 
 	expect = "-2147483648";
 	expect_len = 11;
-	given_len = ft_printf("%d", MIN_INT);
+	given_len = ft_printf("%d", (int)MIN_INT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -518,7 +533,7 @@ void	test_ft_printf_maxUint(void)
 
 	expect = "4294967295";
 	expect_len = 10;
-	given_len = ft_printf("%u", MAX_UINT);
+	given_len = ft_printf("%u", (unsigned)MAX_UINT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -563,7 +578,7 @@ void	test_ft_printf_maxHexadecS(void)
 
 	expect = "ffffffff";
 	expect_len = 8;
-	given_len = ft_printf("%x", MAX_UINT);
+	given_len = ft_printf("%x", (unsigned)MAX_UINT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -579,6 +594,52 @@ void	test_ft_printf_minHexadecS(void)
 	expect = "0";
 	expect_len = 1;
 	given_len = ft_printf("%x", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alter0HexadecS(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0";
+	expect_len = 1;
+	given_len = ft_printf("%#x", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+
+void	test_ft_printf_0precision0HexadecS(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "";
+	expect_len = 0;
+	given_len = ft_printf("%.0x", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alter0Precision0HexadecS(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "";
+	expect_len = 0;
+	given_len = ft_printf("%#.0x", MIN_UINT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -608,7 +669,7 @@ void	test_ft_printf_maxHexadecB(void)
 
 	expect = "FFFFFFFF";
 	expect_len = 8;
-	given_len = ft_printf("%X", MAX_UINT);
+	given_len = ft_printf("%X", (unsigned)MAX_UINT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -624,6 +685,53 @@ void	test_ft_printf_minHexadecB(void)
 	expect = "0";
 	expect_len = 1;
 	given_len = ft_printf("%X", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+
+void	test_ft_printf_alter0HexadecB(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0";
+	expect_len = 1;
+	given_len = ft_printf("%#X", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+
+void	test_ft_printf_0precision0HexadecB(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "";
+	expect_len = 0;
+	given_len = ft_printf("%.0X", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alter0Precision0HexadecB(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "";
+	expect_len = 0;
+	given_len = ft_printf("%#.0X", MIN_UINT);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -750,6 +858,21 @@ void	test_ft_printf_rightPaddChar(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_ft_printf_output(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = " 1 0 ";
+	expect_len = 7;
+	given_len = ft_printf(" %c %c %c ", '1', '0', 0);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+}
+
 int	main(void)
 {
 	UNITY_BEGIN();
@@ -758,6 +881,7 @@ int	main(void)
 	RUN_TEST(test_ft_printf_char);
 	RUN_TEST(test_ft_printf_nonPrintChar);
 	RUN_TEST(test_ft_printf_nonAsciiChar);
+	RUN_TEST(test_ft_printf_0char);
 	RUN_TEST(test_ft_printf_2char);
 	RUN_TEST(test_ft_printf_2charInStr);
 	RUN_TEST(test_ft_printf_str);
@@ -787,9 +911,15 @@ int	main(void)
 	RUN_TEST(test_ft_printf_hexadecS);
 	RUN_TEST(test_ft_printf_maxHexadecS);
 	RUN_TEST(test_ft_printf_minHexadecS);
+	RUN_TEST(test_ft_printf_alter0HexadecS);
+	RUN_TEST(test_ft_printf_0precision0HexadecS);
+	RUN_TEST(test_ft_printf_alter0Precision0HexadecS);
 	RUN_TEST(test_ft_printf_hexadecB);
 	RUN_TEST(test_ft_printf_maxHexadecB);
 	RUN_TEST(test_ft_printf_minHexadecB);
+	RUN_TEST(test_ft_printf_alter0HexadecB);
+	RUN_TEST(test_ft_printf_0precision0HexadecB);
+	RUN_TEST(test_ft_printf_alter0Precision0HexadecB);
 	RUN_TEST(test_ft_printf_pct);
 	RUN_TEST(test_ft_printf_0paddNegInt);
 	RUN_TEST(test_ft_printf_paddNegInt);
@@ -798,6 +928,8 @@ int	main(void)
 	RUN_TEST(test_ft_printf_precisionHexadec);
 	RUN_TEST(test_ft_printf_paddPct);
 	RUN_TEST(test_ft_printf_rightPaddChar);
+	RUN_TEST(test_ft_printf_output);
+	// cp and sed test
 	// check for precision - signs and spaces before int
 	return (UNITY_END());
 }
