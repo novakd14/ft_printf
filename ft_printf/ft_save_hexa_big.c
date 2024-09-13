@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:29:41 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/20 15:57:29 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/13 13:08:29 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ static void	ft_cpyhexa_big(t_flags *flags, char *dest, int len, unsigned int x)
 	}
 	num_len = ft_checkhexadec(x);
 	if (flags->precision >= 0)
-		ft_memset(dest, '0', ft_max(0, flags->precision - num_len));
+		ft_memset(dest + start, '0', ft_max(0, flags->precision - num_len));
 	else if (flags->zero_padd)
-		ft_memset(dest, '0', ft_max(0, flags->field_width - num_len));
+		ft_memset(dest + start, '0', ft_max(0, flags->field_width - num_len
+				- start));
 	ft_cpyhexadec_big(dest, len - 1, x);
 }
 
@@ -44,10 +45,10 @@ int	ft_save_hexa_big(t_flags *flags, unsigned int x)
 		len = ft_checkhexadec(x);
 		if (flags->precision >= 0)
 			len = ft_umax(flags->precision, len);
-		else if (flags->zero_padd)
-			len = ft_umax(flags->field_width, len);
 		if (flags->alter_form && x != 0)
 			len += 2;
+		if (flags->zero_padd)
+			len = ft_umax(flags->field_width, len);
 		flags->arg_len = len;
 	}
 	flags->str = (char *)ft_calloc(flags->arg_len + 1, sizeof(char));

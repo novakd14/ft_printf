@@ -600,6 +600,21 @@ void	test_ft_printf_minHexadecS(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_ft_printf_alterHexadecS(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0x9abcdef";
+	expect_len = 9;
+	given_len = ft_printf("%#x", 0x9aBcDeF);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
 void	test_ft_printf_alter0HexadecS(void)
 {
 	char	*expect;
@@ -615,7 +630,6 @@ void	test_ft_printf_alter0HexadecS(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
-
 void	test_ft_printf_0precision0HexadecS(void)
 {
 	char	*expect;
@@ -625,6 +639,36 @@ void	test_ft_printf_0precision0HexadecS(void)
 	expect = "";
 	expect_len = 0;
 	given_len = ft_printf("%.0x", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alterPrecisionHexadecS(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0x0009abcdef";
+	expect_len = 12;
+	given_len = ft_printf("%#.10x", 0x9aBcDeF);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alterPaddHexadecS(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0x09abcdef";
+	expect_len = 10;
+	given_len = ft_printf("%#010x", 0x9aBcDeF);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -691,6 +735,20 @@ void	test_ft_printf_minHexadecB(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
+void	test_ft_printf_alterHexadecB(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0X9ABCDEF";
+	expect_len = 9;
+	given_len = ft_printf("%#X", 0x9aBcDeF);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
 
 void	test_ft_printf_alter0HexadecB(void)
 {
@@ -707,7 +765,6 @@ void	test_ft_printf_alter0HexadecB(void)
 	TEST_ASSERT_EQUAL_STRING(expect, buf);
 }
 
-
 void	test_ft_printf_0precision0HexadecB(void)
 {
 	char	*expect;
@@ -717,6 +774,36 @@ void	test_ft_printf_0precision0HexadecB(void)
 	expect = "";
 	expect_len = 0;
 	given_len = ft_printf("%.0X", MIN_UINT);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alterPrecisionHexadecB(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0X0009ABCDEF";
+	expect_len = 12;
+	given_len = ft_printf("%#.10X", 0x9aBcDeF);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
+void	test_ft_printf_alterPaddHexadecB(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "0X09ABCDEF";
+	expect_len = 10;
+	given_len = ft_printf("%#010X", 0x9aBcDeF);
 	ft_readBuffer(out, buf);
 	ft_clearFile(file, out);
 	TEST_ASSERT_EQUAL(expect_len, given_len);
@@ -911,14 +998,20 @@ int	main(void)
 	RUN_TEST(test_ft_printf_hexadecS);
 	RUN_TEST(test_ft_printf_maxHexadecS);
 	RUN_TEST(test_ft_printf_minHexadecS);
+	RUN_TEST(test_ft_printf_alterHexadecS);
 	RUN_TEST(test_ft_printf_alter0HexadecS);
 	RUN_TEST(test_ft_printf_0precision0HexadecS);
+	RUN_TEST(test_ft_printf_alterPrecisionHexadecS);
+	RUN_TEST(test_ft_printf_alterPaddHexadecS);
 	RUN_TEST(test_ft_printf_alter0Precision0HexadecS);
 	RUN_TEST(test_ft_printf_hexadecB);
 	RUN_TEST(test_ft_printf_maxHexadecB);
 	RUN_TEST(test_ft_printf_minHexadecB);
+	RUN_TEST(test_ft_printf_alterHexadecB);
 	RUN_TEST(test_ft_printf_alter0HexadecB);
 	RUN_TEST(test_ft_printf_0precision0HexadecB);
+	RUN_TEST(test_ft_printf_alterPrecisionHexadecB);
+	RUN_TEST(test_ft_printf_alterPaddHexadecB);
 	RUN_TEST(test_ft_printf_alter0Precision0HexadecB);
 	RUN_TEST(test_ft_printf_pct);
 	RUN_TEST(test_ft_printf_0paddNegInt);
