@@ -55,6 +55,21 @@ void	tearDown(void)
 	printf("%s", buf);
 }
 
+void	test_ft_printf_NULL(void)
+{
+	char	*expect;
+	int		expect_len;
+	int		given_len;
+
+	expect = "";
+	expect_len = -1;
+	given_len = ft_printf(NULL);
+	ft_readBuffer(out, buf);
+	ft_clearFile(file, out);
+	TEST_ASSERT_EQUAL(expect_len, given_len);
+	TEST_ASSERT_EQUAL_STRING(expect, buf);
+}
+
 void	test_ft_printf_emptyString(void)
 {
 	char	*expect;
@@ -963,6 +978,7 @@ void	test_ft_printf_output(void)
 int	main(void)
 {
 	UNITY_BEGIN();
+	RUN_TEST(test_ft_printf_NULL);
 	RUN_TEST(test_ft_printf_emptyString);
 	RUN_TEST(test_ft_printf_basicInput);
 	RUN_TEST(test_ft_printf_char);
