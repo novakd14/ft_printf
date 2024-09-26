@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:42:50 by dnovak            #+#    #+#             */
-/*   Updated: 2024/06/19 16:55:17 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/26 14:27:18 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_printf(const char *format, ...)
 	va_start(argv, format);
 	len = 0;
 	i = 0;
+	if (format == NULL)
+		return (-1);
 	while (*(format + i))
 	{
 		if (*(format + i) == '%')
@@ -43,12 +45,10 @@ int	ft_printf(const char *format, ...)
 			if (ft_set_flags(format, &i, &flags, &argv) == 0)
 				return (-1);
 			len += ft_put_arg(&flags);
+			continue ;
 		}
-		else
-		{
-			ft_putchar_fd(*(format + i++), 1);
-			len++;
-		}
+		ft_putchar_fd(*(format + i++), 1);
+		len++;
 	}
 	va_end(argv);
 	return (len);
